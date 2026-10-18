@@ -96,7 +96,13 @@ if [ ! -x "$dir/config.sh" ]; then
 fi
 
 # The runner's own script: installs the .NET native libraries it needs (libicu and friends).
-(cd "$dir" && ./bin/installdependencies.sh >/dev/null)
+# It tries libicu versions newest first, and apt complains about each one the distro doesn't have,
+# so its output is only shown when it fails.
+if ! deps_log=$(cd "$dir" && ./bin/installdependencies.sh 2>&1); then
+    echo "$deps_log" >&2
+    echo "Installing the runner's libraries failed (output above)" >&2
+    exit 1
+fi
 
 # ── Register with GitHub ─────────────────────────────────────────────────────
 cd "$dir"
