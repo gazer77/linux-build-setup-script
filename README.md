@@ -44,3 +44,9 @@ Anything a repo needs beyond the runner, such as a sudo rule to restart its serv
 
 > Keep each repository that uses a runner **private**. On a public repo, a pull request from a fork could run code on
 > the machine.
+
+## Hosting a project on the server
+
+[HOSTING.md](HOSTING.md) is the brief to hand a project (or the agent working on it) to deploy it to jacktheripper:
+the server's layout, the runner, the workflow, and the `deploy/` scripts every project follows, with
+xs-and-os-game as the worked example.
